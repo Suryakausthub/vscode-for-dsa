@@ -1,52 +1,64 @@
-#include <iostream>
-#include <vector>
+/*Turbo Sort
+Given a list of numbers, you have to sort them in non decreasing order.
+
+Input Format
+The first line contains a single integer, 
+�
+N, denoting the number of integers in the list.
+The next 
+�
+N lines contain a single integer each, denoting the elements of the list.
+Output Format
+Output 
+�
+N lines, containing one integer each, in non-decreasing order.
+
+Constraints
+1
+≤
+�
+≤
+1
+0
+6
+1≤N≤10 
+6
+ 
+0
+≤
+0≤ elements of the list 
+≤
+1
+0
+6
+≤10 
+6
+ 
+Sample 1:
+Input
+Output
+5
+5
+3
+6
+7
+1
+1
+3
+5
+6
+7*/
+#include<iostream>
 using namespace std;
+
+int N, A[1000001];
 
 int main()
 {
-    int n;
-    cin >> n;
-
-    for (int i = 0; i < n; ++i)
-    {
-        int k;
-        cin >> k;
-
-        vector<int> arr(k);
-        for (int j = 0; j < k; ++j)
-        {
-            cin >> arr[j];
-        }
-
-        if (k == true)
-        {
-            int c = 0;
-            for (int m = 0; m < k; m++)
-            {
-                if (arr[0] == arr[m])
-                {
-                    c = c + 1
-                }
-            }
-            if (c == k)
-            {
-                cout << 0;
-                break;
-            }
-        }
-        else
-        {
-            int count = 1;
-            for (int m = 1; m < k; ++m)
-            {
-                if (arr[m] != arr[m - 1])
-                {
-                    count++;
-                }
-            }
-        }
-        cout << count << endl;
-    }
-
-    return 0;
+    cin >> N;
+    for(int i = 1; i <= N; i++)
+        cin >> A[i];
+    sort(A + 1, A + N + 1);
+    for(int i = 1; i <= N; i++)
+        cout << A[i] << endl;
 }
