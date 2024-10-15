@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int smallestRangeII(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());  // we sorted the array to make maximum and minimum elements positioned at their respective ends.
+        int maxdiff=nums[nums.size()-1]-nums[0]; // original maximum difference in height
+        int maxelem,minelem; // here maxelem and minelem represents pairelements
+        for(int i=1;i<nums.size();i++) // we ran a for loop to check each pair such that its differnce is smallest or not
+        {
+            maxelem=max(nums[nums.size()-1]-k,nums[i-1]+k); 
+            minelem=min(nums[0]+k,nums[i]-k); 
+            maxdiff=min(maxdiff,maxelem-minelem);
+        }
+        return maxdiff;
+    }
+};
