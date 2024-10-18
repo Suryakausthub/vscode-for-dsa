@@ -1,0 +1,35 @@
+class Solution {
+public:
+    
+    void dfs(vector<vector<pair<int,int>>> &g,int s, int &cnt,vector<bool> &v)
+    {
+        if(v[s]){
+            return ;
+        }
+        v[s]  = true;
+        
+        for(auto &i: g[s])
+        {   
+            if(!v[i.first]){
+                cnt+=i.second;
+                dfs(g,i.first,cnt,v);
+            }
+        }
+    }
+    
+    
+    int minReorder(int n, vector<vector<int>>& c) {
+        vector<vector<pair<int,int>>> g(n);
+        vector<bool> v(n,false);
+        
+        for(auto &i: c)
+        {
+            g[i[0]].push_back({i[1],1});
+            g[i[1]].push_back({i[0],0});
+        }
+        
+        int cnt = 0;
+        dfs(g,0,cnt,v);
+        return cnt;
+    }
+};
