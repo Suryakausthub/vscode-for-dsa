@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int bull=0,s1,s2,f=0;
+        unordered_map<int,int> mp;
+        for(int i =0;i<secret.size();i++){
+            s1=secret[i]-'0';
+            s2=guess[i]-'0';
+            if(s1==s2)
+            bull++;
+            mp[s2]++;
+            
+        }
+        for(int i =0;i<secret.size();i++)
+        {
+        s1=secret[i]-'0';
+        if(mp[s1]>0){
+        f++;
+        mp[s1]--;}
+        }      
+        string s=to_string(bull)+'A'+to_string(f-bull)+'B';
+        return s;
+    }
+};
+
