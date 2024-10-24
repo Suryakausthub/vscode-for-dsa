@@ -1,0 +1,47 @@
+class Solution {
+ vector <vector <int>> adj;
+  //planting the flower which is not present in the adjacent 
+   void plant(int node , vector <int> &res){
+       
+       for(int i = 1; i < 5; i++){
+           bool found = true;
+           
+           //if the current flower is present on any adjacent node so we can't choose this flower
+           for(auto it : adj[node]){
+               if(res[it] != -1  and res[it] == i){
+                   found = false;
+               }
+           }
+           
+           // if the current flower is not present in the all the adjacent nodes then we can choose this flower
+           
+           if(found){
+               res[node] = i;
+               return ;
+           }
+       }
+   }
+
+public:
+    vector<int> gardenNoAdj(int n, vector<vector<int>>& paths) {
+       adj.resize(n);
+        
+        for(auto path : paths){
+            adj[path[0] - 1].push_back(path[1] - 1);
+            adj[path[1] - 1].push_back(path[0] -1);
+        }
+        
+        vector <int> res(n , -1);
+        
+        for(int i = 0; i < n; i++){
+            plant(i, res);
+        }
+        
+      
+        return res;
+        
+      
+        
+        
+    }
+};
