@@ -1,0 +1,25 @@
+typedef pair<double, pair<int,int>> ppi;
+
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+        vector<vector<int>> ans;
+        priority_queue<ppi, vector<ppi>, greater<ppi>> mh;
+        
+        for(auto it : points){
+            int a = it[0]; int b = it[1];
+            double x = sqrt(pow(a,2) + pow(b,2));
+            mh.push({x, {a,b}});
+        }
+        
+        
+        while(k >0){
+            int a = mh.top().second.first;
+            int b = mh.top().second.second;
+            mh.pop();
+            ans.push_back({a,b});
+            k--;
+        }
+        return ans;
+    }
+};
