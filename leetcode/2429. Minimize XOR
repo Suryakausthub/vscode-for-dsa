@@ -1,0 +1,35 @@
+class Solution {
+private:
+ int countSetBits(int n){
+    int count = 0;
+    while(n){
+        n = n & (n-1);
+        count++;
+    }
+    return count;
+ }
+public:
+    int minimizeXor(int num1, int num2) {
+        int setBitsNum1 = countSetBits(num1);
+        int setBitsNum2 = countSetBits(num2);
+
+        if(setBitsNum1 > setBitsNum2){
+            int diff = setBitsNum1 - setBitsNum2;
+            while(diff != 0){
+                num1 = num1 & (num1-1);
+                diff--;
+            }
+            return num1;
+        }
+        else if(setBitsNum2 > setBitsNum1){
+            int diff = setBitsNum2 - setBitsNum1;
+            while(diff != 0){
+                num1 = num1 | (num1+1);
+                diff--;
+            }
+            return num1;
+        }
+
+        return num1;
+    }
+};
